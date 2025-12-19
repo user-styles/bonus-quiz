@@ -169,9 +169,26 @@ let state = {
   q2Choices: null
 };
 
+function getRotationIndex(key, mod) {
+  // Check if this visitor has a stored position
+  const stored = localStorage.getItem(key);
+  if (stored !== null) {
+    // Returning visitor: advance to next position
+    const cur = Number.parseInt(stored, 10) || 0;
+    const next = (cur + 1) % mod;
+    localStorage.setItem(key, String(next));
+    return cur % mod;
+  } else {
+    // New visitor: start at random position
+    const randomStart = Math.floor(Math.random() * mod);
+    localStorage.setItem(key, String((randomStart + 1) % mod));
+    return randomStart;
+  }
+}
+
 function newQuizContext() {
-  const q1i = nextIndex("attempt::q1", QUIZ_DATA.q1Order.length);
-  const q23i = nextIndex("attempt::q23", QUIZ_DATA.q23Order.length);
+  const q1i = getRotationIndex("attempt::q1", QUIZ_DATA.q1Order.length);
+  const q23i = getRotationIndex("attempt::q23", QUIZ_DATA.q23Order.length);
 
   const q1Name = QUIZ_DATA.q1Order[q1i];
   const q23Name = QUIZ_DATA.q23Order[q23i];
