@@ -248,7 +248,7 @@ function newQuizContext() {
 function landingView() {
   setProgress(0);
   render(`
-    <img src="bonus-quiz/Take our Quiz for 250 EXTRA ENTRIES in our $1000 Amazon Gift Card - Sweepstakes Giveaway.jpg" alt="Take the Quiz - Unlock a Secret Code for 250 Extra Entries" class="quiz-hero-img" />
+    <img src="Take our Quiz for 250 EXTRA ENTRIES in our $1000 Amazon Gift Card - Sweepstakes Giveaway.jpg" alt="Take the Quiz - Unlock a Secret Code for 250 Extra Entries" class="quiz-hero-img" />
     
     <p class="quiz-supertext">Take this short quiz for</p>
     <h1 class="quiz-headline">500 BONUS ENTRIES</h1>
@@ -451,7 +451,7 @@ function failView(score) {
     <h2>So Close!</h2>
     <p>You need 3 out of 3 to unlock the code. Give it another shot!</p>
     
-    <img src="Take_our_Quiz_for_250_EXTRA_ENTRIES_in_our__1000_Amazon_Gift_Card_-_Sweepstakes_Giveaway.jpg" alt="Take the Quiz - Unlock a Secret Code for 250 Extra Entries" class="quiz-fail-img" />
+    <img src="Take our Quiz for 250 EXTRA ENTRIES in our $1000 Amazon Gift Card - Sweepstakes Giveaway.jpg" alt="Take the Quiz - Unlock a Secret Code for 250 Extra Entries" class="quiz-fail-img" />
 
     <div class="actions">
       <button class="btn-green" id="tryAgainBtn" type="button">Try Again</button>
