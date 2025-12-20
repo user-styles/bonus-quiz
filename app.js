@@ -252,7 +252,7 @@ function landingView() {
     <h1 class="quiz-headline">500 BONUS ENTRIES</h1>
     <p class="quiz-subtext">in our $1,000 Amazon Sweepstakes</p>
     
-    <img src="quiz-banner.jpg" alt="" class="quiz-hero-img" />
+    <img src="quiz-banner.jpg" alt="quiz-banner" class="quiz-hero-img" />
 
     <div class="actions">
       <button class="btn-green" id="startBtn">Start Quiz</button>
