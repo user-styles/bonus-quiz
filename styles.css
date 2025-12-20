@@ -284,6 +284,24 @@ button{
   height:16px;
 }
 
+.quiz-hero-img{
+  display:block;
+  width:100%;
+  max-width:400px;
+  height:auto;
+  margin:0 auto 12px;
+  border-radius:12px;
+}
+
+.quiz-fail-img{
+  display:block;
+  width:100%;
+  max-width:320px;
+  height:auto;
+  margin:16px auto;
+  border-radius:12px;
+}
+
 @media (max-width:560px){
   .topbar{flex-direction:column; align-items:flex-start}
   .progress{width:100%; justify-content:space-between}

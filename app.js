@@ -248,18 +248,11 @@ function newQuizContext() {
 function landingView() {
   setProgress(0);
   render(`
+    <img src="Take_our_Quiz_for_250_EXTRA_ENTRIES_in_our__1000_Amazon_Gift_Card_-_Sweepstakes_Giveaway.jpg" alt="Take the Quiz - Unlock a Secret Code for 250 Extra Entries" class="quiz-hero-img" />
+    
     <p class="quiz-supertext">Take this short quiz for</p>
     <h1 class="quiz-headline">500 BONUS ENTRIES</h1>
     <p class="quiz-subtext">in our $1,000 Amazon Sweepstakes</p>
-
-    <div class="hr"></div>
-
-    <h2>How It Works</h2>
-    <ul>
-      <li>Click "Start Quiz" & use Google Search to answer 3 questions.</li>
-      <li>Score 100% for a secret code worth 500 bonus entries.</li>
-      <li>Visit the sweepstakes page to redeem your code.</li>
-    </ul>
 
     <div class="actions">
       <button class="btn-green" id="startBtn">Start Quiz</button>
@@ -455,11 +448,13 @@ function failView(score) {
   setProgress(3);
   render(`
     <div class="kicker"><span class="small note-bad">${score} of 3 correct</span></div>
-    <h2>Good Effort!</h2>
-    <p>but you need a perfect score to unlock the secret code.</p>
+    <h2>So Close!</h2>
+    <p>You need 3 out of 3 to unlock the code. Give it another shot!</p>
+    
+    <img src="Take_our_Quiz_for_250_EXTRA_ENTRIES_in_our__1000_Amazon_Gift_Card_-_Sweepstakes_Giveaway.jpg" alt="Take the Quiz - Unlock a Secret Code for 250 Extra Entries" class="quiz-fail-img" />
 
     <div class="actions">
-      <button class="btn-primary" id="tryAgainBtn" type="button">Try Again</button>
+      <button class="btn-green" id="tryAgainBtn" type="button">Try Again</button>
     </div>
   `);
 
