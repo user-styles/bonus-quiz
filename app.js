@@ -169,32 +169,71 @@ let state = {
   q2Choices: null
 };
 
-function getRotationIndex(key, mod) {
-  // Check if this visitor has a stored position
-  const stored = localStorage.getItem(key);
-  if (stored !== null) {
-    // Returning visitor: advance to next position
-    const cur = Number.parseInt(stored, 10) || 0;
-    const next = (cur + 1) % mod;
-    localStorage.setItem(key, String(next));
-    return cur % mod;
-  } else {
-    // New visitor: start at random position
-    const randomStart = Math.floor(Math.random() * mod);
-    localStorage.setItem(key, String((randomStart + 1) % mod));
-    return randomStart;
+// Question 1 weighted selection (percentages must sum to 100)
+const Q1_WEIGHTS = {
+  "A21 Wellness Dispensary": 14,
+  "Got Your Six Dispensary": 12,
+  "WASH BINS": 12,
+  "SOS Survival Products": 10,
+  "Printastic": 10,
+  "Peninsula Mobile Screens": 6,
+  "Platon Graphics": 6,
+  "There You Have It 3D": 6,
+  "Bigger Better Banner": 4,
+  "CROTRAN Custom Rub On Transfers": 4,
+  "DTL Dry Transfer Letters": 4,
+  "ESA Awnings Inc.": 4,
+  "Geeks on Command": 4,
+  "PASWM Peel and Stick Wall Murals": 4,
+  "WASH BINS Newport Beach": 4
+};
+
+// Question 2 pool (equal odds, Q3 always matches Q2 client)
+const Q2_CLIENTS = [
+  "A21 Wellness Dispensary",
+  "Got Your Six Dispensary",
+  "Peninsula Mobile Screens",
+  "Printastic",
+  "Bigger Better Banner",
+  "SOS Survival Products",
+  "Platon Graphics",
+  "WASH BINS",
+  "CROTRAN",
+  "There You Have It 3D",
+  "DTL",
+  "ESA Awnings Inc.",
+  "Geeks on Command",
+  "PASWM",
+  "WASH BINS Newport Beach"
+];
+
+// Weighted random selection for Q1
+function selectQ1Client() {
+  const rand = Math.random() * 100;
+  let cumulative = 0;
+  for (const [client, weight] of Object.entries(Q1_WEIGHTS)) {
+    cumulative += weight;
+    if (rand < cumulative) {
+      return client;
+    }
   }
+  // Fallback (shouldn't happen if weights sum to 100)
+  return Object.keys(Q1_WEIGHTS)[0];
+}
+
+// Equal random selection for Q2 (Q3 uses same client)
+function selectQ2Client() {
+  const idx = Math.floor(Math.random() * Q2_CLIENTS.length);
+  return Q2_CLIENTS[idx];
 }
 
 function newQuizContext() {
-  const q1i = getRotationIndex("attempt::q1", QUIZ_DATA.q1Order.length);
-  const q23i = getRotationIndex("attempt::q23", QUIZ_DATA.q23Order.length);
-
-  const q1Name = QUIZ_DATA.q1Order[q1i];
-  const q23Name = QUIZ_DATA.q23Order[q23i];
-
-  state.q1Client = resolveClient(q1Name, "q1");
-  state.q23Client = resolveClient(q23Name, "q2");
+  // Q1: weighted random selection
+  state.q1Client = resolveClient(selectQ1Client(), "q1");
+  
+  // Q2: equal random selection (Q3 automatically uses same client)
+  state.q23Client = resolveClient(selectQ2Client(), "q2");
+  
   state.q1Selected = null;
   state.q2Selected = null;
   state.q3Input = "";
