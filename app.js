@@ -248,7 +248,7 @@ function newQuizContext() {
 function landingView() {
   setProgress(0);
   render(`
-    <img src="Take_our_Quiz_for_250_EXTRA_ENTRIES_in_our__1000_Amazon_Gift_Card_-_Sweepstakes_Giveaway.jpg" alt="Take the Quiz - Unlock a Secret Code for 250 Extra Entries" class="quiz-hero-img" />
+    <img src="Take our Quiz for 250 EXTRA ENTRIES in our $1000 Amazon Gift Card - Sweepstakes Giveaway.jpg" alt="Take the Quiz - Unlock a Secret Code for 250 Extra Entries" class="quiz-hero-img" />
     
     <p class="quiz-supertext">Take this short quiz for</p>
     <h1 class="quiz-headline">500 BONUS ENTRIES</h1>
