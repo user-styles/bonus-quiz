@@ -5,7 +5,7 @@
    - Answer positions randomized at runtime
 ========== */
 const QUIZ_DATA = {
-  "secretCode": "GRANDNEWYEAR2026",
+  "secretCode": "TRIPLEWIN2026",
   "aliases": {
     "CROTRAN": "CROTRAN Custom Rub On Transfers",
     "PASWM": "PASWM Peel and Stick Wall Murals",
@@ -518,7 +518,7 @@ function landingView() {
     <div class="landing-content">
       <p class="quiz-supertext">Take this short quiz for</p>
       <h1 class="quiz-headline">500 BONUS ENTRIES</h1>
-      <p class="quiz-subtext">in our $1,000 Amazon Sweepstakes</p>
+      <p class="quiz-subtext">3 GUARANTEED WINNERS - Enter to WIN a $500, $250 or $100 Amazon Gift Card</p>
       
       <img src="quiz-banner.jpg" alt="" class="quiz-hero-img" />
 
@@ -697,7 +697,7 @@ function successView() {
     </div>
 
     <div class="actions">
-      <a class="btn-green" href="https://gleam.io/8eHMC/enter-to-win-a-1000-amazon-gift-card" target="_blank" rel="noopener">Redeem Your Code Now</a>
+      <a class="btn-green" href="https://gleam.io/9qN3W/3-guaranteed-winners-enter-to-win-a-500-250-or-100-amazon-gift-card" target="_blank" rel="noopener">Redeem Your Code Now</a>
     </div>
   `);
 
