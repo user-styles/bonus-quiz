@@ -75,7 +75,7 @@ const QUIZ_DATA = {
       ]
     },
     "Got Your Six Dispensary": {
-      "bodyHtml": "Got Your Six Dispensary has a 5-star Google review that was left by Moise Baptiste.\n\n<div class=\"spacer\"></div>\n\nWhat does this review say?\n\n<div class=\"spacer\"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for \"Got Your Six Dispensary\".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by \"Newest\", then scrolling down to the review left by Moise Baptiste around September 2024.</li>\n<li>You'll find the answer in this review.</li>\n</ol>\n<div class=\"hr\"></div>\nWhat does Moise Baptiste's review say?",
+      "bodyHtml": "Got Your Six Dispensary has a 5-star Google review that was left by Moise Baptiste.\n\n<div class=\"spacer\"></div>\n\nWhat does this review say?\n\n<div class=\"spacer\"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for \"Got Your Six Dispensary\".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by \"Newest\", then scroll down to the review left by Moise Baptiste around September 2024.</li>\n<li>You'll find the answer in this review.</li>\n</ol>\n<div class=\"hr\"></div>\nWhat does Moise Baptiste's review say?",
       "choices": [
         {"text": "Great vibe.", "correct": true},
         {"text": "Helpful staff.", "correct": false},
@@ -93,7 +93,7 @@ const QUIZ_DATA = {
       ]
     },
     "Peninsula Mobile Screens": {
-      "bodyHtml": "Peninsula Mobile Screens has a 5-star Google review that was left by Z J.\n\n<div class=\"spacer\"></div>\n\nWhat does Z J say in their review?\n\n<div class=\"spacer\"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for \"Peninsula Mobile Screens\".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by \"Newest\", then scrolling down to the review left by Z J around March 2024.</li>\n<li>You'll find the answer in the first sentence of this review.</li>\n</ol>\n<div class=\"hr\"></div>\nWhat does Z J say in the first sentence of their review?",
+      "bodyHtml": "Peninsula Mobile Screens has a 5-star Google review that was left by Z J.\n\n<div class=\"spacer\"></div>\n\nWhat does Z J say in their review?\n\n<div class=\"spacer\"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for \"Peninsula Mobile Screens\".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by \"Newest\", then scroll down to the review left by Z J around March 2024.</li>\n<li>You'll find the answer in the first sentence of this review.</li>\n</ol>\n<div class=\"hr\"></div>\nWhat does Z J say in the first sentence of their review?",
       "choices": [
         {"text": "These guys were the bees knees", "correct": true},
         {"text": "These guys were the best", "correct": false},
@@ -102,7 +102,7 @@ const QUIZ_DATA = {
       ]
     },
     "Platon Graphics": {
-      "bodyHtml": "Platon Graphics has a 5-star Google review that was left by Lisa Lerman. The review mentions a specific product.\n\n<div class=\"spacer\"></div>\n\nWhat is this product?\n\n<div class=\"spacer\"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for \"Platon Graphics\".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by \"Newest\", then scrolling down to the review left by Lisa Lerman around September 2024.</li>\n<li>You'll find the answer in the first sentence of this review.</li>\n</ol>\n<div class=\"hr\"></div>\nWhich product is mentioned in the first sentence of Lisa Lerman's review? \"Platon Graphics is our go-to place for _________.\"\n",
+      "bodyHtml": "Platon Graphics has a 5-star Google review that was left by Lisa Lerman. The review mentions a specific product.\n\n<div class=\"spacer\"></div>\n\nWhat is this product?\n\n<div class=\"spacer\"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for \"Platon Graphics\".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by \"Newest\", then scroll down to the review left by Lisa Lerman around September 2024.</li>\n<li>You'll find the answer in the first sentence of this review.</li>\n</ol>\n<div class=\"hr\"></div>\nWhich product is mentioned in the first sentence of Lisa Lerman's review? \"Platon Graphics is our go-to place for _________.\"\n",
       "choices": [
         {"text": "Transfer Logos", "correct": true},
         {"text": "Graphic Designs", "correct": false},
@@ -111,7 +111,7 @@ const QUIZ_DATA = {
       ]
     },
     "Printastic": {
-      "bodyHtml": "Printastic has a 5-star Google review that was left by Alexander Medvedev.\n\n<div class=\"spacer\"></div>\n\nWhat does Alexander Medvedev say in their review?\n\n<div class=\"spacer\"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for \"Printastic\".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by \"Newest\", then scrolling down to the review left by Alexander Medvedev around April 2024.</li>\n<li>You'll find the answer in this review.</li>\n</ol>\n<div class=\"hr\"></div>\nWhat does Alexander Medvedev say in their review?",
+      "bodyHtml": "Printastic has a 5-star Google review that was left by Alexander Medvedev.\n\n<div class=\"spacer\"></div>\n\nWhat does Alexander Medvedev say in their review?\n\n<div class=\"spacer\"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for \"Printastic\".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by \"Newest\", then scroll down to the review left by Alexander Medvedev around April 2024.</li>\n<li>You'll find the answer in this review.</li>\n</ol>\n<div class=\"hr\"></div>\nWhat does Alexander Medvedev say in their review?",
       "choices": [
         {"text": "Best printing company out there.", "correct": true},
         {"text": "Fast turnaround, great quality as always.", "correct": false},
@@ -120,7 +120,7 @@ const QUIZ_DATA = {
       ]
     },
     "SOS Survival Products": {
-      "bodyHtml": "SOS Survival Products has a 5-star Google review that was left by Mark Siegal. The review mentions a specific class.\n\n<div class=\"spacer\"></div>\n\nWhat is the name of this class?\n\n<div class=\"spacer\"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for \"SOS Survival Products\".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by \"Newest\", then scrolling down to the review left by Mark Siegal around March 2024.</li>\n<li>You'll find the answer in the first sentence of this review.</li>\n</ol>\n<div class=\"hr\"></div>\nWhich class is mentioned in the first sentence of Mark Siegal's review?",
+      "bodyHtml": "SOS Survival Products has a 5-star Google review that was left by Mark Siegal. The review mentions a specific class.\n\n<div class=\"spacer\"></div>\n\nWhat is the name of this class?\n\n<div class=\"spacer\"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for \"SOS Survival Products\".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by \"Newest\", then scroll down to the review left by Mark Siegal around March 2024.</li>\n<li>You'll find the answer in the first sentence of this review.</li>\n</ol>\n<div class=\"hr\"></div>\nWhich class is mentioned in the first sentence of Mark Siegal's review?",
       "choices": [
         {"text": "Emergency Preparedness Class", "correct": true},
         {"text": "Preparedness for Power Outages Class", "correct": false},
@@ -129,7 +129,7 @@ const QUIZ_DATA = {
       ]
     },
     "There You Have It 3D": {
-      "bodyHtml": "There You Have It 3D has a 5-star Google review that was left by Moe Wolf.\n\n<div class=\"spacer\"></div>\n\nWhat does Moe Wolf say in their review?\n\n<div class=\"spacer\"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for \"There You Have It 3D\".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by \"Newest\", then scrolling down to the review left by Moe Wolf around August 2024.</li>\n<li>You'll find the answer in this review.</li>\n</ol>\n<div class=\"hr\"></div>\nWhat does Moe Wolf say in their review?",
+      "bodyHtml": "There You Have It 3D has a 5-star Google review that was left by Moe Wolf.\n\n<div class=\"spacer\"></div>\n\nWhat does Moe Wolf say in their review?\n\n<div class=\"spacer\"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for \"There You Have It 3D\".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by \"Newest\", then scroll down to the review left by Moe Wolf around August 2024.</li>\n<li>You'll find the answer in this review.</li>\n</ol>\n<div class=\"hr\"></div>\nWhat does Moe Wolf say in their review?",
       "choices": [
         {"text": "great job on prototypes", "correct": true},
         {"text": "so happy with the 3D Prints", "correct": false},
@@ -138,7 +138,7 @@ const QUIZ_DATA = {
       ]
     },
     "WASH BINS": {
-      "bodyHtml": "WASH BINS has a 5-star Google review that was left by Randi Grigsby.\n\n<div class=\"spacer\"></div>\n\nFor how long has Randi Grigsby used WASH BINS' service?\n\n<div class=\"spacer\"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for \"WASH BINS Los Angeles\".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by \"Newest\", then scrolling down to the review left by Randi Grigsby around October 2024.</li>\n<li>You'll find the answer in the first sentence of this review.</li>\n</ol>\n<div class=\"hr\"></div>\nHow long has Randi Grigsby used the WASH BINS service for?",
+      "bodyHtml": "WASH BINS has a 5-star Google review that was left by Randi Grigsby.\n\n<div class=\"spacer\"></div>\n\nFor how long has Randi Grigsby used WASH BINS' service?\n\n<div class=\"spacer\"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for \"WASH BINS Los Angeles\".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by \"Newest\", then scroll down to the review left by Randi Grigsby around October 2024.</li>\n<li>You'll find the answer in the first sentence of this review.</li>\n</ol>\n<div class=\"hr\"></div>\nHow long has Randi Grigsby used the WASH BINS service for?",
       "choices": [
         {"text": "over a year", "correct": true},
         {"text": "3 years", "correct": false},
@@ -147,7 +147,7 @@ const QUIZ_DATA = {
       ]
     },
     "WASH BINS Newport Beach": {
-      "bodyHtml": "WASH BINS Newport Beach has a 5-star Google review that was left by David Hilton.\n\n<div class=\"spacer\"></div>\n\nWhich plan is David Hilton on?\n\n<div class=\"spacer\"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for \"WASH BINS Newport Beach\".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by \"Newest\", then scrolling down to the review left by David Hilton around October 2024.</li>\n<li>You'll find the answer in the first sentence of this review.</li>\n</ol>\n<div class=\"hr\"></div>\nWhat type of service plan does David Hilton use?",
+      "bodyHtml": "WASH BINS Newport Beach has a 5-star Google review that was left by David Hilton.\n\n<div class=\"spacer\"></div>\n\nWhich plan is David Hilton on?\n\n<div class=\"spacer\"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for \"WASH BINS Newport Beach\".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by \"Newest\", then scroll down to the review left by David Hilton around October 2024.</li>\n<li>You'll find the answer in the first sentence of this review.</li>\n</ol>\n<div class=\"hr\"></div>\nWhat type of service plan does David Hilton use?",
       "choices": [
         {"text": "quarterly plan", "correct": true},
         {"text": "monthly plan", "correct": false},
