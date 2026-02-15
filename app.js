@@ -719,7 +719,7 @@ function failView(score) {
     <h2>So Close!</h2>
     <p>You need 3 out of 3 to unlock the code. Give it another shot!</p>
     
-    <img src="quiz-banner.jpg" alt="" class="quiz-hero-img" />
+    <img src="quiz-retake.jpg" alt="" class="quiz-hero-img" />
 
     <div class="actions">
       <button class="btn-green" id="tryAgainBtn" type="button">Try Again</button>
