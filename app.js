@@ -20,7 +20,7 @@ const QUIZ_DATA = {
     "Geeks on Command": ["Geeks On Command Montclair", "geeks on command montclair"],
     "Got Your Six Dispensary": ["Got Your Six Dispensary", "got your six dispensary"],
     "PASWM Peel and Stick Wall Murals": ["PASWM", "paswm"],
-    "Peninsula Mobile Screens": ["Peninsula Mobile Screens", "peninsula mobile screens"],
+    "Peninsula Mobile Screens": ["Peninsula Mobile Screens 4235 Sawtelle Blvd", "peninsula mobile screens 4235 Sawtelle Blvd"],
     "Platon Graphics": ["Platon Graphics", "platon graphics"],
     "Printastic": ["Printastic", "printastic"],
     "SOS Survival Products": ["SOS Survival Products", "sos survival products"],
