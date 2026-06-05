@@ -1,0 +1,1271 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bonus Entries Quiz</title>
+  <style>
+:root{
+  --bg:#0b1020;
+  --card:#111a33;
+  --text:#e9ecf7;
+  --muted:#b9c1df;
+  --line:rgba(255,255,255,.12);
+  --btn:#e9ecf7;
+  --btnText:#0b1020;
+  --danger:#ff6b6b;
+  --ok:#66f2a0;
+  --focus:#8bb1ff;
+  --radius:16px;
+  --green:#1a7d4e;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:radial-gradient(1200px 600px at 20% -10%, rgba(139,177,255,.22), transparent 60%),
+             radial-gradient(900px 500px at 120% 10%, rgba(102,242,160,.16), transparent 55%),
+             var(--bg);
+  color:var(--text);
+  font:16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.quiz-shell{
+  max-width:920px;
+  margin:0 auto;
+  padding:22px 14px 34px;
+}
+
+.topbar{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:14px;
+}
+
+.brand{
+  font-weight:700;
+  letter-spacing:.2px;
+  opacity:.95;
+}
+
+.report-link{
+  font-size:13px;
+  color:var(--muted);
+  text-decoration:none;
+  opacity:.7;
+  transition:opacity .2s;
+}
+
+.report-link:hover{
+  opacity:1;
+  text-decoration:underline;
+}
+
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:22px;
+  box-shadow:0 18px 50px rgba(0,0,0,.28);
+}
+
+h1,h2,h3{margin:0 0 10px}
+h1{font-size:28px; line-height:1.15}
+h2{font-size:22px; line-height:1.2}
+h3{font-size:18px; line-height:1.25}
+p{margin:0 0 12px; color:var(--muted)}
+ul{margin:10px 0 14px 18px; color:var(--muted); padding-left:8px}
+ol{margin:10px 0 14px 18px; color:var(--muted); padding-left:8px}
+li{margin:6px 0}
+
+.hr{
+  height:1px;
+  background:var(--line);
+  margin:24px 0;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:14px;
+}
+
+.actions-between{
+  justify-content:space-between;
+  align-items:center;
+}
+
+button{
+  appearance:none;
+  border:1px solid transparent;
+  border-radius:12px;
+  padding:12px 14px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.btn-primary{
+  background:var(--btn);
+  color:var(--btnText);
+}
+.btn-primary:disabled{opacity:.55; cursor:not-allowed}
+
+.btn-ghost{
+  background:transparent;
+  border-color:var(--line);
+  color:var(--text);
+}
+
+.btn-danger{
+  background:transparent;
+  border-color:rgba(255,107,107,.4);
+  color:var(--text);
+}
+
+.btn-green{
+  background:var(--green);
+  color:#fff;
+  border:1px solid transparent;
+  border-radius:12px;
+  padding:12px 14px;
+  font-weight:700;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-block;
+  text-align:center;
+}
+.btn-green:disabled{opacity:.55; cursor:not-allowed}
+
+.btn-primary:focus,
+.btn-ghost:focus,
+.btn-danger:focus,
+.btn-green:focus,
+.optionBtn:focus,
+.input:focus{
+  outline:2px solid var(--focus);
+  outline-offset:2px;
+}
+
+.options{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:12px;
+}
+
+.optionBtn{
+  width:auto;
+  align-self:flex-start;
+  min-width:200px;
+  text-align:left;
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
+  color:var(--text);
+  padding:12px 20px;
+  border-radius:12px;
+}
+
+.optionBtn[aria-pressed="true"]{
+  border-color:rgba(139,177,255,.65);
+  background:rgba(139,177,255,.12);
+}
+
+.kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:700;
+  color:var(--text);
+  opacity:.95;
+  margin-bottom:10px;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:4px 10px;
+  border-radius:999px;
+  background:rgba(102,242,160,.12);
+  border:1px solid rgba(102,242,160,.25);
+  color:var(--text);
+  font-size:12px;
+  font-weight:800;
+}
+
+.progress{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  min-width:240px;
+  justify-content:flex-end;
+}
+
+.progress__track{
+  width:180px;
+  height:14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.12);
+  border:2px solid rgba(139,177,255,.4);
+  overflow:hidden;
+}
+
+.progress__fill{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg, rgba(102,242,160,.9), rgba(139,177,255,.95));
+  border-radius:999px;
+  transition:width .35s ease;
+}
+
+.progress__label{
+  font-size:14px;
+  font-weight:700;
+  color:var(--text);
+  min-width:52px;
+  text-align:right;
+}
+
+.inputRow{
+  margin-top:16px;
+}
+
+.input{
+  width:100%;
+  max-width:400px;
+  padding:14px 16px;
+  border-radius:10px;
+  border:2px solid rgba(139,177,255,.5);
+  background:#fff;
+  color:#1a1a2e;
+  font-size:16px;
+}
+
+.input::placeholder{
+  color:#888;
+}
+
+.input:focus{
+  outline:none;
+  border-color:rgba(139,177,255,.9);
+  box-shadow:0 0 0 3px rgba(139,177,255,.2);
+}
+
+.input--error{
+  border-color:rgba(255,107,107,.8);
+}
+
+.helper{
+  font-size:13px;
+  color:var(--muted);
+  margin-top:8px;
+}
+
+.helper--error{
+  color:rgba(255,107,107,.95);
+}
+
+.secret{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+  margin-top:10px;
+  padding:14px;
+  border-radius:14px;
+  background:rgba(102,242,160,.10);
+  border:1px solid rgba(102,242,160,.25);
+}
+
+.secret-inline{
+  display:inline-flex;
+  width:auto;
+}
+
+.secret code{
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:.6px;
+  color:var(--text);
+  background:transparent;
+}
+
+.note-good{color:rgba(102,242,160,.9)}
+.note-bad{color:rgba(255,107,107,.95)}
+.small{font-size:13px}
+.link{color:var(--text); text-decoration:underline}
+.footnote{
+  margin-top:14px;
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.quiz-supertext{
+  font-size:14px;
+  color:var(--muted);
+  margin:0 0 4px;
+}
+
+.quiz-headline{
+  font-size:28px;
+  font-weight:900;
+  margin:0 0 4px;
+  line-height:1.1;
+}
+
+.quiz-subtext{
+  font-size:14px;
+  color:var(--muted);
+  margin:0 0 12px;
+}
+
+.spacer{
+  height:16px;
+}
+
+.quiz-hero-img{
+  display:block;
+  width:600px;
+  max-width:100%;
+  height:auto;
+  margin:12px 0;
+  border-radius:12px;
+}
+
+.landing-content{
+  display:flex;
+  flex-direction:column;
+}
+
+@media (max-width:560px){
+  .topbar{flex-direction:column; align-items:flex-start}
+  .progress{width:100%; justify-content:space-between}
+  .progress__track{flex:1}
+  ul{margin-left:8px; padding-left:12px}
+  ol{margin-left:8px; padding-left:12px}
+}
+  </style>
+</head>
+<body>
+  <main class="quiz-shell" id="app">
+    <header class="topbar">
+      <div class="brand">Bonus Entries Quiz</div>
+      <a href="mailto:chris@brobex.org?subject=SWEEPSTAKES%20QUIZ%20BUG%20REPORTED" class="report-link">Report Issue</a>
+      <div class="progress" aria-label="Quiz progress">
+        <div class="progress__track" role="progressbar" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0">
+          <div class="progress__fill" id="progressFill"></div>
+        </div>
+        <div class="progress__label" id="progressLabel">0 of 3</div>
+      </div>
+    </header>
+
+    <section class="card" id="card">
+    </section>
+  </main>
+
+  <script>
+/* ==========
+   QUIZ DATA
+   - q1 and q2 are arrays of question variants per client; one is picked randomly each session.
+   - q3 is a single phone-number entry question per client.
+   - All client keys are canonical. Aliases map alternate names to canonical keys.
+   - searchTerms keys match canonical client keys.
+   - Q1_WEIGHTS keys must match canonical q1 keys exactly. Must sum to 100.
+   - Q2_CLIENTS entries must match canonical q2 keys exactly.
+========== */
+const QUIZ_DATA = {
+
+  secretCode: "5FIVEWINNERS5",
+
+  aliases: {
+    "CROTRAN Custom Rub On Transfers": "CROTRAN",
+    "DTL Dry Transfer Letters":        "DTL",
+    "ESA Awnings":                     "ESA Awnings Inc.",
+    "PASWM Peel and Stick Wall Murals": "PASWM"
+  },
+
+  searchTerms: {
+    "Bigger Better Banner":     ["Bigger Better Banner", "bigger better banner"],
+    "CROTRAN":                  ["CROTRAN", "Crotran"],
+    "DTL":                      ["DTL Dry Transfer Letters", "dtl dry transfer letters"],
+    "ESA Awnings Inc.":         ["ESA Awnings Inc.", "ESA Awnings"],
+    "Geeks on Command":         ["Geeks On Command Montclair", "geeks on command montclair"],
+    "Got Your Six Dispensary":  ["Got Your Six Dispensary", "got your six dispensary"],
+    "PASWM":                    ["PASWM", "paswm"],
+    "Peninsula Mobile Screens": ["Peninsula Mobile Screens", "peninsula mobile screens"],
+    "Platon Graphics":          ["Platon Graphics", "platon graphics"],
+    "Printastic":               ["Printastic", "printastic"],
+    "SOS Survival Products":    ["SOS Survival Products", "sos survival products"],
+    "There You Have It 3D":     ["There You Have It 3D", "there you have it 3D"],
+    "WASH BINS":                ["WASH BINS", "washbins", "wash bins pacific palisades"],
+    "WASH BINS Newport Beach":  ["WASH BINS Newport Beach", "washbins newport beach"]
+  },
+
+  q1: {
+
+    "Bigger Better Banner": [
+      {
+        bodyHtml: `Bigger Better Banner has a 5-star Google review that was left by Krisha Espiritu.\n\n<div class="spacer"></div>\nWhat does this review say?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Bigger Better Banner Stanford Ave".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review left by Krisha Espiritu in December 2025.</li>\n</ol>\n<div class="hr"></div>\nWhat does Krisha Espiritu's review say?`,
+        choices: [
+          {text: "Good Service overall!", correct: true},
+          {text: "Awesome service thanks!",  correct: false},
+          {text: "Thanks!",                  correct: false},
+          {text: "Cheers",                   correct: false}
+        ]
+      }
+    ],
+
+    "CROTRAN": [
+      {
+        bodyHtml: `CROTRAN offers Custom Dry Rub on Transfer Sheets.\n\n<div class="spacer"></div>\nWhat is the ship time for these sheets?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "CROTRAN".</li>\n<li>Open the CROTRAN (Custom Rub On Transfers) website.</li>\n<li>Scroll to the very bottom of the page and open the "FAQs" link.</li>\n<li>Click on the last question: "How fast can I have my Custom Dry Rub on Transfer sheet".</li>\n<li>You'll find the ship time (the answer) in the very first sentence.</li>\n</ol>\n<div class="hr"></div>\nCustom Dry Rub on Transfer sheet can ship _________.`,
+        choices: [
+          {text: "the next day",                        correct: true},
+          {text: "within 48 hours",                     correct: false},
+          {text: "the same day",                        correct: false},
+          {text: "as soon as production is completed",  correct: false}
+        ]
+      }
+    ],
+
+    "DTL": [
+      {
+        bodyHtml: `DTL (Dry Transfer Letters) has a Pricing page on their website.\n\n<div class="spacer"></div>\nWhat does the button say on this page?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "DTL Dry Transfer Letters".</li>\n<li>Open the DTL (Dry Transfer Letters) website.</li>\n<li>Open the "Pricing" link in the top menu.</li>\n<li>Locate the pink button to find the button text (the answer).</li>\n</ol>\n<div class="hr"></div>\nWhat is the text inside the pink button on DTL's Pricing page?`,
+        choices: [
+          {text: "Start My Order",   correct: true},
+          {text: "Get Started Now",  correct: false},
+          {text: "Add To Cart",      correct: false},
+          {text: "Delivery Options", correct: false}
+        ]
+      }
+    ],
+
+    "ESA Awnings Inc.": [
+      {
+        bodyHtml: `ESA Awnings has a 5-star Google review that was left by Jamie Saure. The review includes a photo of a restaurant awning.\n\n<div class="spacer"></div>\nWhat does it say on this awning?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "ESA Awnings Inc.".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review left by Jamie Saure in November 2025.</li>\n<li>Find the image of the restaurant awning attached to the review, and read the text on the awning.</li>\n</ol>\n<div class="hr"></div>\nWhat does it say on the awning in the review photo (black awning with white text)?`,
+        choices: [
+          {text: "Cow Belly",      correct: true},
+          {text: "Pork Chops",     correct: false},
+          {text: "T-Bone and Only",correct: false},
+          {text: "The Codfather",  correct: false}
+        ]
+      }
+    ],
+
+    "Geeks on Command": [
+      {
+        bodyHtml: `Geeks On Command Montclair has a 5-star Google review that was left by Maurieke Shyelle.\n\n<div class="spacer"></div>\nWhat is her occupation?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Geeks On Command Montclair".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review left by Maurieke Shyelle in March 2025.</li>\n<li>You'll find Maurieke's occupation (the answer) in the first sentence of this review.</li>\n</ol>\n<div class="hr"></div>\nWhat is Maurieke Shyelle's occupation?`,
+        choices: [
+          {text: "Physician",   correct: true},
+          {text: "Lawyer",      correct: false},
+          {text: "Accountant",  correct: false},
+          {text: "Firefighter", correct: false}
+        ]
+      }
+    ],
+
+    "Got Your Six Dispensary": [
+      {
+        bodyHtml: `Got Your Six Dispensary has a 5-star Google review that was left by Moise Baptiste.\n\n<div class="spacer"></div>\nWhat does this review say?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Got Your Six Dispensary".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by "Newest", then scrolling down to the review left by Moise Baptiste in September 2025.</li>\n<li>You'll find the answer in this review.</li>\n</ol>\n<div class="hr"></div>\nWhat does Moise Baptiste's review say?`,
+        choices: [
+          {text: "Great vibe.",     correct: true},
+          {text: "Helpful staff.",  correct: false},
+          {text: "Delivered fast.", correct: false},
+          {text: "Good product.",   correct: false}
+        ]
+      },
+      {
+        bodyHtml: `Got Your Six Dispensary has a 5-star Google review that was left by Helen S. Which employee does this review mention by name?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Got Your Six Dispensary".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by "Newest", then scrolling down to the review left by Helen S. in January 2026.</li>\n<li>You'll find the answer in this review.</li>\n</ol>\n<div class="hr"></div>\nWhat is the employee's name?`,
+        choices: [
+          {text: "Kat",    correct: true},
+          {text: "Jay",    correct: false},
+          {text: "Erica",  correct: false},
+          {text: "Winston",correct: false}
+        ]
+      },
+      {
+        bodyHtml: `Got Your Six Dispensary has a 5-star Google review that was left by Nick Riggio. Which employees does this review mention by name?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Got Your Six Dispensary".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by "Newest", then scrolling down to the review left by Nick Riggio in January 2026.</li>\n<li>You'll find the answer in this review.</li>\n</ol>\n<div class="hr"></div>\nWhich employees are mentioned?`,
+        choices: [
+          {text: "Lauren, Nick, Mike and Dan",    correct: true},
+          {text: "Erica, Winston, Jay and Kat",   correct: false},
+          {text: "Freddy, Salima, King and Mike",  correct: false},
+          {text: "Jules, Laura, Tam and Rob",      correct: false}
+        ]
+      }
+    ],
+
+    "PASWM": [
+      {
+        bodyHtml: `PASWM (Peel and Stick Wall Murals) has a phone number listed on their website.\n\n<div class="spacer"></div>\nWhat is the phone number?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "PASWM".</li>\n<li>Find and open their official website.</li>\n<li>Locate the phone number on their contact page.</li>\n</ol>\n<div class="hr"></div>\nWhat is the phone number for PASWM Peel and Stick Wall Murals?`,
+        choices: [
+          {text: "(888) 958-1991", correct: true},
+          {text: "(888) 958-1992", correct: false},
+          {text: "(888) 958-1993", correct: false},
+          {text: "(888) 958-1994", correct: false}
+        ]
+      }
+    ],
+
+    "Peninsula Mobile Screens": [
+      {
+        bodyHtml: `Peninsula Mobile Screens has a 5-star Google review that was left by Z J. What does Z J say in their review?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Peninsula Mobile Screens".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by "Newest", then scrolling down to the review left by Z J in March 2025.</li>\n<li>You'll find the answer in the first sentence of this review.</li>\n</ol>\n<div class="hr"></div>\nWhat does Z J say in the first sentence of their review?`,
+        choices: [
+          {text: "These guys were the bees knees",    correct: true},
+          {text: "These guys were the best",          correct: false},
+          {text: "These guys were the real deal",     correct: false},
+          {text: "These guys were the gold standard", correct: false}
+        ]
+      },
+      {
+        bodyHtml: `Peninsula Mobile Screens has a 5-star Google review that was left by Yani Holm. What does Yani Holm say in their review?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Peninsula Mobile Screens".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by "Newest", then scrolling down to the review left by Yani Holm in September 2025.</li>\n<li>You'll find the answer in the first sentence of this review.</li>\n</ol>\n<div class="hr"></div>\nWhat does Yani Holm say in her review?`,
+        choices: [
+          {text: "cool",      correct: true},
+          {text: "amazing",   correct: false},
+          {text: "happy",     correct: false},
+          {text: "excellent", correct: false}
+        ]
+      },
+      {
+        bodyHtml: `Peninsula Mobile Screens has a 5-star Google review that was left by Ra\u00FAl Cabrera. What did Ra\u00FAl Cabrera say he had installed?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Peninsula Mobile Screens".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by "Newest", then scrolling down to the review left by Ra\u00FAl Cabrera in May 2024.</li>\n<li>You'll find the answer in the first sentence of this review.</li>\n</ol>\n<div class="hr"></div>\nWhat does Ra\u00FAl Cabrera say he had installed?`,
+        choices: [
+          {text: "Security doors and retractable door screens", correct: true},
+          {text: "Store awning and security door",              correct: false},
+          {text: "Retractable awnings",                        correct: false},
+          {text: "Phantom Screen doors",                       correct: false}
+        ]
+      }
+    ],
+
+    "Platon Graphics": [
+      {
+        bodyHtml: `Platon Graphics has a 5-star Google review that was left by Lisa Lerman. The review mentions a specific product.\n\n<div class="spacer"></div>\nWhat is this product?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Platon Graphics".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by "Newest", then scrolling down to the review left by Lisa Lerman in September 2025.</li>\n<li>You'll find the answer in the first sentence of this review.</li>\n</ol>\n<div class="hr"></div>\nWhich product is mentioned in the first sentence of Lisa Lerman's review? "Platon Graphics is our go-to place for _________."\n`,
+        choices: [
+          {text: "Transfer Logos",  correct: true},
+          {text: "Graphic Designs", correct: false},
+          {text: "Rub-On Lettering",correct: false},
+          {text: "Custom Decals",   correct: false}
+        ]
+      }
+    ],
+
+    "Printastic": [
+      {
+        bodyHtml: `What is Printastic's email address?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Printastic".</li>\n<li>Open their official website.</li>\n<li>You'll find the email address at the very bottom of their website, in the left column of their footer.</li>\n</ol>\n<div class="hr"></div>\nWhat is the email address for Printastic?`,
+        choices: [
+          {text: "hello@printastic.com",   correct: true},
+          {text: "support@printastic.com", correct: false},
+          {text: "sales@printastic.com",   correct: false},
+          {text: "fantastic@printastic.com",correct: false}
+        ]
+      },
+      {
+        bodyHtml: `Which company created the chat feature on Printastic's website?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Printastic".</li>\n<li>Open their official website.</li>\n<li>Click the blue "Chat" button in the bottom right corner.</li>\n<li>The company name is shown in the bottom left corner of the chat window.</li>\n</ol>\n<div class="hr"></div>\nWhich of these companies handles Printastic's chat feature?`,
+        choices: [
+          {text: "Zen Desk", correct: true},
+          {text: "HubSpot",  correct: false},
+          {text: "Zapier",   correct: false},
+          {text: "LiveChat", correct: false}
+        ]
+      }
+    ],
+
+    "SOS Survival Products": [
+      {
+        bodyHtml: `SOS Survival Products has a 5-star Google review that was left by Mark Siegal. The review mentions a specific class.\n\n<div class="spacer"></div>\nWhat is the name of this class?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "SOS Survival Products".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by "Newest", then scrolling down to the review left by Mark Siegal in March 2025.</li>\n<li>You'll find the answer in the first sentence of this review.</li>\n</ol>\n<div class="hr"></div>\nWhich class is mentioned in the first sentence of Mark Siegal's review?`,
+        choices: [
+          {text: "Emergency Preparedness Class",      correct: true},
+          {text: "Preparedness for Power Outages Class",correct: false},
+          {text: "Disaster Preparedness Webinar",    correct: false},
+          {text: "Outdoor Survival Class",           correct: false}
+        ]
+      }
+    ],
+
+    "There You Have It 3D": [
+      {
+        bodyHtml: `There You Have It 3D has a 5-star Google review that was left by Moe Wolf.\n\n<div class="spacer"></div>\nWhat does Moe Wolf say in their review?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "There You Have It 3D".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by "Newest", then scrolling down to the review left by Moe Wolf in August 2025.</li>\n<li>You'll find the answer in this review.</li>\n</ol>\n<div class="hr"></div>\nWhat does Moe Wolf say in their review?`,
+        choices: [
+          {text: "great job on prototypes",           correct: true},
+          {text: "so happy with the 3D Prints",       correct: false},
+          {text: "super professional prompt service", correct: false},
+          {text: "there you have it, there I have it",correct: false}
+        ]
+      }
+    ],
+
+    "WASH BINS": [
+      {
+        bodyHtml: `WASH BINS has a 5-star Google review that was left by Randi Grigsby.\n\n<div class="spacer"></div>\nFor how long has Randi Grigsby used WASH BINS' service?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "WASH BINS Los Angeles".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by "Newest", then scrolling down to the review left by Randi Grigsby in October 2025.</li>\n<li>You'll find the answer in the first sentence of this review.</li>\n</ol>\n<div class="hr"></div>\nHow long has Randi Grigsby used the WASH BINS service for?`,
+        choices: [
+          {text: "over a year",     correct: true},
+          {text: "3 years",         correct: false},
+          {text: "only a few months",correct: false},
+          {text: "over 5 years",    correct: false}
+        ]
+      }
+    ],
+
+    "WASH BINS Newport Beach": [
+      {
+        bodyHtml: `WASH BINS Newport Beach has a 5-star Google review that was left by David Hilton.\n\n<div class="spacer"></div>\nWhich plan is David Hilton on?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "WASH BINS Newport Beach".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review by sorting the reviews by "Newest", then scrolling down to the review left by David Hilton in October 2025.</li>\n<li>You'll find the answer in the first sentence of this review.</li>\n</ol>\n<div class="hr"></div>\nWhat type of service plan does David Hilton use?`,
+        choices: [
+          {text: "quarterly plan", correct: true},
+          {text: "monthly plan",   correct: false},
+          {text: "weekly plan",    correct: false},
+          {text: "bi-weekly plan", correct: false}
+        ]
+      }
+    ]
+
+  },
+
+  q2: {
+
+    "Bigger Better Banner": [
+      {
+        bodyHtml: `What is Bigger Better Banner's most popular banner size?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Bigger Better Banner".</li>\n<li>Open their official website.</li>\n<li>Scroll to the very bottom of the page.</li>\n<li>On the left side, find the heading "Popular Banner Sizes".</li>\n</ol>\n<div class="hr"></div>\nWhat is the very first banner size under the heading "Popular Banner Sizes" at the bottom of their site?`,
+        choices: [
+          {text: "2x10 banner", correct: true},
+          {text: "3x4 banner",  correct: false},
+          {text: "4x12 banner", correct: false},
+          {text: "3x20 banner", correct: false}
+        ]
+      }
+    ],
+
+    "CROTRAN": [
+      {
+        bodyHtml: `Who is the owner of CROTRAN?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "CROTRAN".</li>\n<li>Open the CROTRAN (Custom Rub On Transfers) website.</li>\n<li>Scroll to the very bottom of the page and open the "About Us" link.</li>\n<li>The owner's name (the answer) can be found in the first line of text.</li>\n</ol>\n<div class="hr"></div>\nWho is the owner of CROTRAN?`,
+        choices: [
+          {text: "Charles Platon",   correct: true},
+          {text: "Andrew Collins",   correct: false},
+          {text: "Michael Prescott", correct: false},
+          {text: "Jonathan Reeves",  correct: false}
+        ]
+      }
+    ],
+
+    "DTL": [
+      {
+        bodyHtml: `How many years of experience does DTL have?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "DTL Dry Transfer Letters".</li>\n<li>Open the DTL (Dry Transfer Letters) website.</li>\n<li>Open the "About" link in the top menu.</li>\n<li>Scroll to the bottom of the page to the section labeled "Looking Ahead".</li>\n<li>The number of years (the answer) can be found in the first line of the text below this heading.</li>\n</ol>\n<div class="hr"></div>\nHow many years of experience does DTL carry forward?`,
+        choices: [
+          {text: "More than 70 Years",    correct: true},
+          {text: "Over 50 Years",         correct: false},
+          {text: "Celebrating 25 Years",  correct: false},
+          {text: "Nearly 10 Years",       correct: false}
+        ]
+      }
+    ],
+
+    "ESA Awnings Inc.": [
+      {
+        bodyHtml: `ESA Awnings has a 5-star Google review that was left by Carina Castaneda in which she mentions an employee's name.\n\n<div class="spacer"></div>\nWhich employee does she mention?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "ESA Awnings Inc.".</li>\n<li>Click the option to view their Google Reviews.</li>\n<li>Find the review left by Carina Castaneda in December 2024.</li>\n</ol>\n<div class="hr"></div>\nWhich employee does Carina Castaneda mention in the first sentence of her review?`,
+        choices: [
+          {text: "Jairo",   correct: true},
+          {text: "Emanuel", correct: false},
+          {text: "Hassan",  correct: false},
+          {text: "Dimitar", correct: false}
+        ]
+      }
+    ],
+
+    "Geeks on Command": [
+      {
+        bodyHtml: `What time does the Montclair branch of Geeks on Command close on Saturdays?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Geeks on Command Montclair".</li>\n<li>Locate the store hours.</li>\n<li>Click "more hours" to see the business hours for all days.</li>\n</ol>\n<div class="hr"></div>\nWhat time does Geeks on Command Montclair close on Saturdays?`,
+        choices: [
+          {text: "7 PM",                       correct: true},
+          {text: "5 PM",                       correct: false},
+          {text: "3 PM",                       correct: false},
+          {text: "They're closed on Saturdays",correct: false}
+        ]
+      }
+    ],
+
+    "Got Your Six Dispensary": [
+      {
+        bodyHtml: `What time does Got Your Six Dispensary open on Sundays?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Got Your Six Dispensary".</li>\n<li>Locate the store hours.</li>\n<li>Click "more hours" to see the business hours for all days.</li>\n</ol>\n<div class="hr"></div>\nWhat time does Got Your Six Dispensary open on Sundays?`,
+        choices: [
+          {text: "10 AM",                     correct: true},
+          {text: "9 AM",                      correct: false},
+          {text: "12 PM",                     correct: false},
+          {text: "They're closed on Sundays", correct: false}
+        ]
+      },
+      {
+        bodyHtml: `What time does Got Your Six Dispensary open on Wednesdays?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Got Your Six Dispensary".</li>\n<li>Locate the store hours.</li>\n<li>Click "more hours" to see the business hours for all days.</li>\n</ol>\n<div class="hr"></div>\nWhat time does Got Your Six Dispensary open on Wednesdays?`,
+        choices: [
+          {text: "9 AM",                         correct: true},
+          {text: "10 AM",                        correct: false},
+          {text: "11 AM",                        correct: false},
+          {text: "They're closed on Wednesdays", correct: false}
+        ]
+      }
+    ],
+
+    "PASWM": [
+      {
+        bodyHtml: `Who is the founder of PASWM?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "PASWM".</li>\n<li>Open the PASWM (Peel and Stick Wall Murals) website.</li>\n<li>Scroll to the very bottom of the page and open the "CONTACT US" link.</li>\n<li>The founder's name (the answer) can be found in the last line of text before the contact form.</li>\n</ol>\n<div class="hr"></div>\nWho is the founder of PASWM?`,
+        choices: [
+          {text: "Charles Platon",  correct: true},
+          {text: "Daniel Whitmore", correct: false},
+          {text: "Bruce Kaminsky",  correct: false},
+          {text: "Marcus Feldman",  correct: false}
+        ]
+      }
+    ],
+
+    "Peninsula Mobile Screens": [
+      {
+        bodyHtml: `What time does Peninsula Mobile Screens open on Saturdays?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Peninsula Mobile Screens".</li>\n<li>Locate the store hours.</li>\n<li>Click "more hours" to see the business hours for all days.</li>\n</ol>\n<div class="hr"></div>\nWhat time does Peninsula Mobile Screens open on Saturdays?`,
+        choices: [
+          {text: "They're open 24 hours",       correct: true},
+          {text: "9 AM",                        correct: false},
+          {text: "10 AM",                       correct: false},
+          {text: "They're closed on Saturdays", correct: false}
+        ]
+      },
+      {
+        bodyHtml: `What time does Peninsula Mobile Screens open on Sundays?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Peninsula Mobile Screens".</li>\n<li>Locate the store hours.</li>\n<li>Click "more hours" to see the business hours for all days.</li>\n</ol>\n<div class="hr"></div>\nWhat time does Peninsula Mobile Screens open on Sundays?`,
+        choices: [
+          {text: "They're closed on Sundays", correct: true},
+          {text: "They're open 24 hours",     correct: false},
+          {text: "9 AM",                      correct: false},
+          {text: "10 AM",                     correct: false}
+        ]
+      }
+    ],
+
+    "Platon Graphics": [
+      {
+        bodyHtml: `What time does Platon Graphics close on Fridays?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Platon Graphics".</li>\n<li>Locate the store hours.</li>\n<li>Click "more hours" to see the business hours for all days.</li>\n</ol>\n<div class="hr"></div>\nWhat time does Platon Graphics close on Fridays?`,
+        choices: [
+          {text: "5:30 PM", correct: true},
+          {text: "4:30 PM", correct: false},
+          {text: "6:30 PM", correct: false},
+          {text: "3:30 PM", correct: false}
+        ]
+      }
+    ],
+
+    "Printastic": [
+      {
+        bodyHtml: `What time does Printastic open on Sundays?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Printastic".</li>\n<li>Locate the store hours.</li>\n<li>Click "more hours" to see the business hours for all days.</li>\n</ol>\n<div class="hr"></div>\nWhat time does Printastic open on Sundays?`,
+        choices: [
+          {text: "They're open 24 hours",     correct: true},
+          {text: "9 AM",                      correct: false},
+          {text: "10 AM",                     correct: false},
+          {text: "They're closed on Sundays", correct: false}
+        ]
+      },
+      {
+        bodyHtml: `Which companies are featured on Printastic's reviews page?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Printastic".</li>\n<li>Open their official website.</li>\n<li>You'll find the reviews link at the very bottom of their website, in the "Our Company" column of their footer.</li>\n</ol>\n<div class="hr"></div>\nPrintastic's Reviews page shows reviews from which companies?`,
+        choices: [
+          {text: "Google Reviews, Trustpilot Reviews, ResellerRatings Reviews, Facebook Reviews", correct: true},
+          {text: "Consumer Reports Reviews, Trustpilot Reviews, Yelp Reviews, Google Reviews",     correct: false},
+          {text: "Amazon Reviews, Google Reviews, Facebook Reviews, Yelp Reviews",                correct: false},
+          {text: "Consumer Reports Reviews, Facebook Reviews, ResellerRatings Reviews, Yelp Reviews", correct: false}
+        ]
+      }
+    ],
+
+    "SOS Survival Products": [
+      {
+        bodyHtml: `What time does SOS Survival Products close on Saturdays?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "SOS Survival Products".</li>\n<li>Locate the store hours.</li>\n<li>Click "more hours" to see the business hours for all days.</li>\n</ol>\n<div class="hr"></div>\nWhat time does SOS Survival Products close on Saturdays?`,
+        choices: [
+          {text: "4 PM", correct: true},
+          {text: "5 PM", correct: false},
+          {text: "6 PM", correct: false},
+          {text: "7 PM", correct: false}
+        ]
+      }
+    ],
+
+    "There You Have It 3D": [
+      {
+        bodyHtml: `What time does There You Have It 3D close on Fridays?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "There You Have It 3D".</li>\n<li>Locate the store hours.</li>\n<li>Click "more hours" to see the business hours for all days.</li>\n</ol>\n<div class="hr"></div>\nWhat time does There You Have It 3D close on Fridays?`,
+        choices: [
+          {text: "5:30 PM", correct: true},
+          {text: "4:30 PM", correct: false},
+          {text: "6:30 PM", correct: false},
+          {text: "3:30 PM", correct: false}
+        ]
+      }
+    ],
+
+    "WASH BINS": [
+      {
+        bodyHtml: `What time does WASH BINS open on Sundays?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "WASH BINS".</li>\n<li>Locate the store hours.</li>\n<li>Click "more hours" to see the business hours for all days.</li>\n</ol>\n<div class="hr"></div>\nWhat time does WASH BINS open on Sundays?`,
+        choices: [
+          {text: "They're open 24 hours",     correct: true},
+          {text: "8 AM",                      correct: false},
+          {text: "10 AM",                     correct: false},
+          {text: "They're closed on Sundays", correct: false}
+        ]
+      }
+    ],
+
+    "WASH BINS Newport Beach": [
+      {
+        bodyHtml: `What time does WASH BINS Newport Beach open on Sundays?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "WASH BINS Newport Beach".</li>\n<li>Locate the store hours.</li>\n<li>Click "more hours" to see the business hours for all days.</li>\n</ol>\n<div class="hr"></div>\nWhat time does WASH BINS Newport Beach open on Sundays?`,
+        choices: [
+          {text: "They're open 24 hours",     correct: true},
+          {text: "8 AM",                      correct: false},
+          {text: "10 AM",                     correct: false},
+          {text: "They're closed on Sundays", correct: false}
+        ]
+      }
+    ]
+
+  },
+
+  q3: {
+    "Bigger Better Banner":     {bodyHtml: `What is the phone number for Bigger Better Banner?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Bigger Better Banner".</li>\n<li>Open their official website and go to the Contact page.</li>\n<li>Find and copy the phone number, then paste or enter it below.</li>\n</ol>\n<div class="hr"></div>\nWhat is Bigger Better Banner's phone number?`, correctPhone: "(888) 958-1991"},
+    "CROTRAN":                  {bodyHtml: `What is the phone number for CROTRAN?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "CROTRAN".</li>\n<li>Locate the phone number on Google, or on their website.</li>\n<li>Copy the phone number, and paste or enter it below.</li>\n</ol>\n<div class="hr"></div>\nWhat is CROTRAN's phone number?`, correctPhone: "(800) 499-0292"},
+    "DTL":                      {bodyHtml: `What is the phone number for DTL?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "DTL Dry Transfer Letters".</li>\n<li>Locate the phone number on Google, or on their website.</li>\n<li>Copy the phone number, and paste or enter it below.</li>\n</ol>\n<div class="hr"></div>\nWhat is DTL's phone number?`, correctPhone: "(800) 499-0292"},
+    "ESA Awnings Inc.":         {bodyHtml: `What is the phone number for ESA Awnings Inc.?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "ESA Awnings Inc.".</li>\n<li>Locate the phone number on Google, or on their website.</li>\n<li>Copy the phone number, and paste or enter it below.</li>\n</ol>\n<div class="hr"></div>\nWhat is ESA Awnings Inc.'s phone number?`, correctPhone: "(323) 441-0108"},
+    "Geeks on Command":         {bodyHtml: `What is the phone number for Geeks on Command?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Geeks on Command".</li>\n<li>Locate the phone number on Google, or on their website.</li>\n<li>Copy the phone number, and paste or enter it below.</li>\n</ol>\n<div class="hr"></div>\nWhat is Geeks on Command's phone number?`, correctPhone: "(973) 590-1059"},
+    "Got Your Six Dispensary":  {bodyHtml: `What is the phone number for Got Your Six Dispensary?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Got Your Six Dispensary".</li>\n<li>Locate the phone number on Google, or on their website.</li>\n<li>Copy the phone number, and paste or enter it below.</li>\n</ol>\n<div class="hr"></div>\nWhat is Got Your Six Dispensary's phone number?`, correctPhone: "(732) 444-2060"},
+    "PASWM":                    {bodyHtml: `What is the phone number for PASWM (Peel and Stick Wall Murals)?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "PASWM".</li>\n<li>Locate the phone number on their website (in the very top left corner).</li>\n<li>Copy the phone number, and paste or enter it below.</li>\n</ol>\n<div class="hr"></div>\nWhat is PASWM's phone number?`, correctPhone: "(888) 958-1991"},
+    "Peninsula Mobile Screens": {bodyHtml: `What is the phone number for Peninsula Mobile Screens?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Peninsula Mobile Screens".</li>\n<li>Locate the phone number on Google, or on their website.</li>\n<li>Copy the phone number, and paste or enter it below.</li>\n</ol>\n<div class="hr"></div>\nWhat is Peninsula Mobile Screens' phone number?`, correctPhone: "(310) 836-5746"},
+    "Platon Graphics":          {bodyHtml: `What is the phone number for Platon Graphics?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Platon Graphics".</li>\n<li>Locate the phone number on Google, or on their website.</li>\n<li>Copy the phone number, and paste or enter it below.</li>\n</ol>\n<div class="hr"></div>\nWhat is Platon Graphics' phone number?`, correctPhone: "(310) 227-8027"},
+    "Printastic":               {bodyHtml: `What is the phone number for Printastic?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "Printastic".</li>\n<li>Locate the phone number on Google, or on their website.</li>\n<li>Copy the phone number, and paste or enter it below.</li>\n</ol>\n<div class="hr"></div>\nWhat is Printastic's phone number?`, correctPhone: "(800) 575-5805"},
+    "SOS Survival Products":    {bodyHtml: `What is the phone number for SOS Survival Products?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "SOS Survival Products".</li>\n<li>Locate the phone number on Google, or on their website.</li>\n<li>Copy the phone number, and paste or enter it below.</li>\n</ol>\n<div class="hr"></div>\nWhat is SOS Survival Products' phone number?`, correctPhone: "(818) 909-0131"},
+    "There You Have It 3D":     {bodyHtml: `What is the phone number for There You Have It 3D?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "There You Have It 3D".</li>\n<li>Locate the phone number on Google, or on their website.</li>\n<li>Copy the phone number, and paste or enter it below.</li>\n</ol>\n<div class="hr"></div>\nWhat is There You Have It 3D's phone number?`, correctPhone: "(213) 513-5210"},
+    "WASH BINS":                {bodyHtml: `What is the phone number for WASH BINS?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "WASH BINS".</li>\n<li>Locate the phone number on Google, or on their website.</li>\n<li>Copy the phone number, and paste or enter it below.</li>\n</ol>\n<div class="hr"></div>\nWhat is WASH BINS' phone number?`, correctPhone: "(833) 927-4246"},
+    "WASH BINS Newport Beach":  {bodyHtml: `What is the phone number for WASH BINS Newport Beach?\n\n<div class="spacer"></div>\n<strong>How to Find the Answer:</strong>\n<ol>\n<li>Search Google for "WASH BINS Newport Beach".</li>\n<li>Locate the phone number on Google, or on their website.</li>\n<li>Copy the phone number, and paste or enter it below.</li>\n</ol>\n<div class="hr"></div>\nWhat is WASH BINS Newport Beach's phone number?`, correctPhone: "(833) 927-4246"}
+  }
+
+};
+
+/* ==========
+   Q1 WEIGHTS  — must sum to 100, keys must match canonical q1 keys exactly
+========== */
+const Q1_WEIGHTS = {
+  "Got Your Six Dispensary":  14,
+  "WASH BINS":                10,
+  "SOS Survival Products":    10,
+  "Printastic":               10,
+  "Peninsula Mobile Screens":  8,
+  "Platon Graphics":           8,
+  "There You Have It 3D":      8,
+  "Bigger Better Banner":      6,
+  "CROTRAN":                   5,
+  "DTL":                       5,
+  "ESA Awnings Inc.":          4,
+  "Geeks on Command":          4,
+  "PASWM":                     4,
+  "WASH BINS Newport Beach":   4
+};
+
+/* ==========
+   Q2 POOL — equal odds, keys must match canonical q2 keys exactly
+========== */
+const Q2_CLIENTS = [
+  "Got Your Six Dispensary",
+  "Peninsula Mobile Screens",
+  "Printastic",
+  "Bigger Better Banner",
+  "SOS Survival Products",
+  "Platon Graphics",
+  "WASH BINS",
+  "CROTRAN",
+  "There You Have It 3D",
+  "DTL",
+  "ESA Awnings Inc.",
+  "Geeks on Command",
+  "PASWM",
+  "WASH BINS Newport Beach"
+];
+
+// ---------- utilities ----------
+
+const $ = (sel) => document.querySelector(sel);
+
+function safeText(s) {
+  return String(s ?? "");
+}
+
+function digitsOnly(s) {
+  return safeText(s).replace(/\D+/g, "");
+}
+
+function normalizeClient(name) {
+  return safeText(name).trim();
+}
+
+function resolveClient(name, dataSection) {
+  const n = normalizeClient(name);
+  if (QUIZ_DATA[dataSection][n]) return n;
+
+  const alias = QUIZ_DATA.aliases[n];
+  if (alias && QUIZ_DATA[dataSection][alias]) return alias;
+
+  const keys = Object.keys(QUIZ_DATA[dataSection]);
+  const lower = n.toLowerCase();
+  const exactLower = keys.find(k => k.toLowerCase() === lower);
+  if (exactLower) return exactLower;
+
+  const contains = keys.find(k => k.toLowerCase().includes(lower) || lower.includes(k.toLowerCase()));
+  if (contains) return contains;
+
+  console.warn(`resolveClient: no match for "${name}" in "${dataSection}". Falling back to "${keys[0]}".`);
+  return keys[0];
+}
+
+function getSearchTermForClient(clientDisplayName) {
+  const key = clientDisplayName in QUIZ_DATA.searchTerms
+    ? clientDisplayName
+    : (QUIZ_DATA.aliases[clientDisplayName] || clientDisplayName);
+  const terms = QUIZ_DATA.searchTerms[key] || [clientDisplayName];
+  return terms[Math.floor(Math.random() * terms.length)];
+}
+
+function injectSearchTerm(bodyHtml, searchTerm) {
+  return bodyHtml.replace(/(Search\s+Google\s+for\s+")([^"]+)(")/gi, (m, a, _old, c) => `${a}${searchTerm}${c}`);
+}
+
+const MONTHS = {
+  january:1, february:2, march:3, april:4, may:5, june:6,
+  july:7, august:8, september:9, october:10, november:11, december:12
+};
+
+function injectRelativeDates(bodyHtml) {
+  const now = new Date();
+  const nowYear  = now.getFullYear();
+  const nowMonth = now.getMonth() + 1;
+  return bodyHtml.replace(
+    /\bin\s+(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})\b/gi,
+    (match, monthName, yearStr) => {
+      const m = MONTHS[monthName.toLowerCase()];
+      const y = parseInt(yearStr, 10);
+      const diff = (nowYear - y) * 12 + (nowMonth - m);
+      if (diff <= 0) return match;
+      const label = diff === 1 ? "about 1 month ago" : `about ${diff} months ago`;
+      return `${match} (${label})`;
+    }
+  );
+}
+
+function pickVariant(variantsArray) {
+  return variantsArray[Math.floor(Math.random() * variantsArray.length)];
+}
+
+function shuffleArray(arr) {
+  const result = [...arr];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
+function prepareChoices(choices) {
+  const keys = ["A", "B", "C", "D"];
+  return shuffleArray(choices).map((choice, idx) => ({
+    key: keys[idx],
+    text: choice.text,
+    correct: choice.correct
+  }));
+}
+
+function setProgress(step) {
+  const clamped = Math.max(0, Math.min(3, step));
+  const pct = (clamped / 3) * 100;
+  $("#progressFill").style.width = `${pct}%`;
+  $("#progressLabel").textContent = `${clamped} of 3`;
+  document.querySelector(".progress__track").setAttribute("aria-valuenow", String(clamped));
+}
+
+function render(html) {
+  $("#card").innerHTML = html;
+}
+
+// ---------- weighted random for Q1 ----------
+
+function selectQ1Client() {
+  const rand = Math.random() * 100;
+  let cumulative = 0;
+  for (const [client, weight] of Object.entries(Q1_WEIGHTS)) {
+    cumulative += weight;
+    if (rand < cumulative) return client;
+  }
+  return Object.keys(Q1_WEIGHTS)[0];
+}
+
+function selectQ2Client() {
+  return Q2_CLIENTS[Math.floor(Math.random() * Q2_CLIENTS.length)];
+}
+
+// ---------- quiz state ----------
+
+let state = {
+  step: 0,
+  q1Client:   null,
+  q23Client:  null,
+  q1Variant:  null,
+  q2Variant:  null,
+  q1Selected: null,
+  q2Selected: null,
+  q3Input:    "",
+  q1Choices:  null,
+  q2Choices:  null
+};
+
+function newQuizContext() {
+  state.q1Client  = resolveClient(selectQ1Client(), "q1");
+  state.q23Client = resolveClient(selectQ2Client(), "q2");
+
+  state.q1Variant = pickVariant(QUIZ_DATA.q1[state.q1Client]);
+  state.q2Variant = pickVariant(QUIZ_DATA.q2[state.q23Client]);
+
+  state.q1Selected = null;
+  state.q2Selected = null;
+  state.q3Input    = "";
+
+  state.q1Choices = prepareChoices(state.q1Variant.choices);
+  state.q2Choices = prepareChoices(state.q2Variant.choices);
+}
+
+// ---------- views ----------
+
+function landingView() {
+  setProgress(0);
+  render(`
+    <div class="landing-content">
+      <p class="quiz-supertext">Take this short quiz for</p>
+      <h1 class="quiz-headline">500 BONUS ENTRIES</h1>
+      <p class="quiz-subtext">in our $1,000 Amazon Sweepstakes</p>
+      <img src="quiz-banner.jpg" alt="" class="quiz-hero-img" />
+      <div class="actions">
+        <button class="btn-green" id="startBtn">Start Quiz</button>
+      </div>
+    </div>
+  `);
+
+  $("#startBtn").addEventListener("click", () => {
+    newQuizContext();
+    state.step = 1;
+    question1View();
+  });
+}
+
+function question1View() {
+  const searchTerm = getSearchTermForClient(state.q1Client);
+  const body = injectRelativeDates(injectSearchTerm(state.q1Variant.bodyHtml, searchTerm));
+
+  setProgress(1);
+
+  const optionsHtml = `<div class="options" role="group" aria-label="Answer choices">
+    ${state.q1Choices.map(c => `
+      <button type="button" class="optionBtn" data-key="${c.key}" aria-pressed="${state.q1Selected === c.key}">
+        <strong>${c.key}.</strong> ${safeText(c.text)}
+      </button>
+    `).join("")}
+  </div>`;
+
+  render(`
+    <div class="kicker"><span class="badge">Question 1</span> <span class="small">of 3</span></div>
+    <div class="hr"></div>
+    <div class="content">${body}</div>
+    ${optionsHtml}
+    <div class="actions actions-between">
+      <button class="btn-green" id="submitBtn" ${!state.q1Selected ? "disabled" : ""}>Submit</button>
+      <span></span>
+    </div>
+  `);
+
+  document.querySelectorAll(".optionBtn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.q1Selected = btn.getAttribute("data-key");
+      question1View();
+    });
+  });
+
+  $("#submitBtn").addEventListener("click", () => {
+    if (!state.q1Selected) return;
+    state.step = 2;
+    question2View();
+  });
+}
+
+function question2View() {
+  const searchTerm = getSearchTermForClient(state.q23Client);
+  const body = injectRelativeDates(injectSearchTerm(state.q2Variant.bodyHtml, searchTerm));
+
+  setProgress(2);
+
+  const optionsHtml = `<div class="options" role="group" aria-label="Answer choices">
+    ${state.q2Choices.map(c => `
+      <button type="button" class="optionBtn" data-key="${c.key}" aria-pressed="${state.q2Selected === c.key}">
+        <strong>${c.key}.</strong> ${safeText(c.text)}
+      </button>
+    `).join("")}
+  </div>`;
+
+  render(`
+    <div class="kicker"><span class="badge">Question 2</span> <span class="small">of 3</span></div>
+    <div class="hr"></div>
+    <div class="content">${body}</div>
+    ${optionsHtml}
+    <div class="actions actions-between">
+      <button class="btn-green" id="submitBtn" ${!state.q2Selected ? "disabled" : ""}>Submit</button>
+      <button class="btn-ghost" id="goBackBtn" type="button">Go Back</button>
+    </div>
+  `);
+
+  document.querySelectorAll(".optionBtn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.q2Selected = btn.getAttribute("data-key");
+      question2View();
+    });
+  });
+
+  $("#goBackBtn").addEventListener("click", () => {
+    state.step = 1;
+    question1View();
+  });
+
+  $("#submitBtn").addEventListener("click", () => {
+    if (!state.q2Selected) return;
+    state.step = 3;
+    question3View();
+  });
+}
+
+function question3View(validationError) {
+  const q3Client = resolveClient(state.q23Client, "q3");
+  const q = QUIZ_DATA.q3[q3Client];
+  const searchTerm = getSearchTermForClient(state.q23Client);
+  const body = injectRelativeDates(injectSearchTerm(q.bodyHtml, searchTerm));
+
+  setProgress(3);
+
+  const safeVal = safeText(state.q3Input).replace(/"/g, "&quot;");
+  const inputHtml = `
+    <div class="inputRow">
+      <input class="input${validationError ? " input--error" : ""}" id="phoneInput"
+        autocomplete="tel" inputmode="tel"
+        placeholder="Paste or type the phone number"
+        value="${safeVal}" />
+      ${validationError ? `<p class="helper helper--error" id="phoneError">${validationError}</p>` : ""}
+    </div>
+  `;
+
+  render(`
+    <div class="kicker"><span class="badge">Question 3</span> <span class="small">of 3</span></div>
+    <div class="hr"></div>
+    <div class="content">${body}</div>
+    ${inputHtml}
+    <div class="actions actions-between">
+      <button class="btn-green" id="submitBtn">Submit</button>
+      <button class="btn-ghost" id="goBackBtn" type="button">Go Back</button>
+    </div>
+  `);
+
+  const phoneInput = $("#phoneInput");
+  phoneInput.addEventListener("input", (e) => {
+    state.q3Input = e.target.value;
+  });
+
+  // Focus the input, placing cursor at end
+  phoneInput.focus();
+  phoneInput.setSelectionRange(phoneInput.value.length, phoneInput.value.length);
+
+  $("#goBackBtn").addEventListener("click", () => {
+    state.step = 2;
+    question2View();
+  });
+
+  $("#submitBtn").addEventListener("click", () => {
+    state.q3Input = $("#phoneInput").value;
+    const digits = digitsOnly(state.q3Input);
+    if (!digits) {
+      question3View("Please enter a phone number before submitting.");
+      return;
+    }
+    gradeQuiz();
+  });
+}
+
+function gradeQuiz() {
+  const q3Client = resolveClient(state.q23Client, "q3");
+  const q3 = QUIZ_DATA.q3[q3Client];
+
+  const q1SelectedChoice = state.q1Choices.find(c => c.key === state.q1Selected);
+  const q2SelectedChoice = state.q2Choices.find(c => c.key === state.q2Selected);
+
+  const correct1 = !!(q1SelectedChoice && q1SelectedChoice.correct);
+  const correct2 = !!(q2SelectedChoice && q2SelectedChoice.correct);
+
+  const userDigits    = digitsOnly(state.q3Input);
+  const correctDigits = digitsOnly(q3.correctPhone);
+  const correct3      = userDigits === correctDigits || userDigits === "1" + correctDigits;
+
+  const score = [correct1, correct2, correct3].filter(Boolean).length;
+
+  if (score === 3) {
+    successView();
+  } else {
+    failView(score);
+  }
+}
+
+function successView() {
+  setProgress(3);
+  const code = QUIZ_DATA.secretCode;
+
+  render(`
+    <div class="kicker"><span class="badge">Perfect score</span> <span class="small note-good">3 of 3 correct</span></div>
+    <h2>Congrats - You've Unlocked a Secret Code!</h2>
+
+    <div class="secret secret-inline">
+      <code id="secretCode">${code}</code>
+      <button class="btn-primary" id="copyBtn" type="button">Copy code</button>
+    </div>
+
+    <div class="actions">
+      <a class="btn-green" href="https://gleam.io/8eHMC/enter-to-win-a-1000-amazon-gift-card" target="_blank" rel="noopener">Redeem Your Code Now</a>
+    </div>
+  `);
+
+  $("#copyBtn").addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      $("#copyBtn").textContent = "Copied";
+      setTimeout(() => { $("#copyBtn").textContent = "Copy code"; }, 1200);
+    } catch {
+      alert("Copy failed. Please highlight the code and copy it manually.");
+    }
+  });
+}
+
+function failView(score) {
+  setProgress(3);
+  render(`
+    <div class="kicker"><span class="small note-bad">${score} of 3 correct</span></div>
+    <h2>So Close!</h2>
+    <p>You need 3 out of 3 to unlock the code. Give it another shot!</p>
+
+    <img src="quiz-retake.jpg" alt="" class="quiz-hero-img" />
+
+    <div class="actions">
+      <button class="btn-green" id="tryAgainBtn" type="button">Try Again</button>
+    </div>
+  `);
+
+  $("#tryAgainBtn").addEventListener("click", () => {
+    newQuizContext();
+    state.step = 1;
+    question1View();
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  landingView();
+});
+  </script>
+</body>
+</html>
