@@ -1,5 +1,5 @@
 Bonus Entries Quiz
-A 3-question scavenger-hunt quiz that awards a secret code for 500 bonus sweepstakes entries. Everything is in a single file, with no build step and no dependencies.
+A 3-question scavenger-hunt quiz that awards a secret code for 1,000 bonus sweepstakes entries. Everything is in a single file, with no build step and no dependencies.
 How It Works
 Q1: Multiple choice. Client is picked by weighted random draw each session.
 Q2: Multiple choice. Client is picked by equal random draw, and is never the same client as Q1.
